@@ -16,17 +16,18 @@ public:
 private:
     Serial *serial;
     QThread *thread;
+
 signals:
-    void signalReceive(QByteArray data);
-    void signalOpenSerialPort(qint32);
+    void signalReceive(QString data);
+    void signalOpenSerialPort(quint32 mode);
+    void signalIsopen(bool isOpen);
     void signalClearComx();             //清空串口号列表
     void signalAddComx(QString comName, QString desc);//添加串口名和描述
 
 public slots:
     void upAvailablePorts();
     void openSerialPort(quint32);          //打开串口
-    void closeSerialPort(void);            //关闭串口
-    void receive_data(QByteArray);
+    void receive_data(QString);
     void setSerialPortName(QString);
     void setSerialPortBaudRate(quint32);    //设置serialport端口波特率信号
     void setSerialPortParity(quint32);      //设置serialport端口校验位

@@ -9,6 +9,9 @@ Serial::Serial(QObject *parent) : QObject(parent)
     serialport->setDataBits(QSerialPort::Data8);        //设置数据位为8位
     serialport->setStopBits(QSerialPort::OneStop);      //设置停止位为1位
 
+
+    hexIn = true;
+    hexOut = false;
     connect(serialport, &QSerialPort::errorOccurred,
             [=](QSerialPort::SerialPortError error)mutable
             {
@@ -16,6 +19,7 @@ Serial::Serial(QObject *parent) : QObject(parent)
                 {
                     cout<<error;
                     emit signal_serialError();
+                    emit signal_serialIsOpen(serialport->isOpen());
                 }
             });
 
@@ -23,8 +27,21 @@ Serial::Serial(QObject *parent) : QObject(parent)
             [=]()mutable
             {
                 QByteArray data = serialport->readAll();
-                emit signal_receiveData(data);
-    });
+
+                if(hexIn){
+                    QString temp(data.toHex().toUpper());
+                    int len = temp.length()/2;
+                    for(int i=1;i<len + 1;i++)
+                    {
+                        temp.insert(2*i + i - 1, " ");
+                    }
+                    emit signal_receiveData(temp);
+                } else {
+                    QTextCodec *tc = QTextCodec::codecForName("GBK");
+                    QString temp = tc->toUnicode(data);
+                    emit signal_receiveData(temp);
+                }
+        });
 }
 
 Serial::~Serial()
@@ -49,15 +66,7 @@ void Serial::slot_openSerialPort( uint32_t openmode)
         default:
             break;
         }
-    }
-
-    emit signal_serialIsOpen(serialport->isOpen());
-}
-
-void Serial::slot_closeSerialPort()
-{
-    if(serialport->isOpen() == true)
-    {
+    }else {
         serialport->close();
     }
 

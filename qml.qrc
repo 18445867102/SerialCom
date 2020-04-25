@@ -12,6 +12,7 @@
         <file>customize/CCheckBox.qml</file>
         <file>customize/CSplitView.qml</file>
         <file>customize/CTitlebar.qml</file>
+        <file>font/Code.ttf</file>
     </qresource>
     <qresource prefix="/icon"/>
 </RCC>

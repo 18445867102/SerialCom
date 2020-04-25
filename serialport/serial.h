@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
+#include <QTextCodec>
 
 #include <QDebug>
 #define cout  qDebug() << __LINE__ << ":"
@@ -17,13 +18,13 @@ public:
 
     QSerialPort *serialport;
 signals:
-    void signal_receiveData(QByteArray recv);        //更新显示信号
-    void signal_serialIsOpen(bool);             //串口是否打开信号
+    void signal_receiveData(QString recv);        //更新显示信号
+    void signal_serialIsOpen(bool isOpen);             //串口是否打开信号
     void signal_serialError();
 
 public slots:
-    void slot_openSerialPort(uint32_t openmode);             //打开串口
-    void slot_closeSerialPort(void);            //关闭串口
+    void slot_openSerialPort(uint32_t openmode);   //打开串口
+
     void slot_setSerialPortName(QString);
     void slot_setSerialPortBaudRate(quint32);    //设置serialport端口波特率信号
     void slot_setSerialPortParity(quint32);      //设置serialport端口校验位
@@ -32,7 +33,8 @@ public slots:
     void slot_setSerialFlowControl(quint32 flowControl);
     void slot_sendData(const char *, qint64);         //发送数据
 private:
-
+    bool hexIn;
+    bool hexOut;
 protected:
 
 //friend class XXX;

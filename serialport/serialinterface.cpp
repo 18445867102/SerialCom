@@ -8,7 +8,8 @@ SerialInterface::SerialInterface(QObject *parent) : QObject(parent)
     serial->moveToThread(thread);
     thread->start();
 
-    connect(serial, SIGNAL(signal_receiveData(QByteArray)), this, SLOT(receive_data(QByteArray)));
+    connect(serial, SIGNAL(signal_receiveData(QString)), this, SLOT(receive_data(QString)));
+    connect(serial, SIGNAL(signal_serialIsOpen(bool)), this, SIGNAL(signalIsopen(bool)));
     connect(this,&SerialInterface::signalOpenSerialPort, serial, &Serial::slot_openSerialPort);
 }
 
@@ -17,12 +18,7 @@ void SerialInterface::openSerialPort(quint32 openmode)
     emit signalOpenSerialPort(openmode);
 }
 
-void SerialInterface::closeSerialPort()
-{
-
-}
-
-void SerialInterface::receive_data(QByteArray data)
+void SerialInterface::receive_data(QString data)
 {
     emit signalReceive(data);
 }

@@ -36,7 +36,7 @@ Rectangle { // Title Rectangle
         anchors.horizontalCenter: parent.horizontalCenter;
         anchors.verticalCenter: parent.verticalCenter;
         color: "#fffffb";
-        font{bold: true;family:'Bookman Old Style';pointSize: 10}
+        font{bold: true;family:'Jokerman';pointSize: 10}
         text: title
     }
     Button {   //关闭按钮
