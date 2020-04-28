@@ -58,8 +58,8 @@ ApplicationWindow {
             property int layoutX3: 300
             property int layoutX4: 400
             property int layoutY1: 36
-            property int layoutY2: 70
-            property int layoutY3: 104
+            property int layoutY2: 66
+            property int layoutY3: 96
             Label{
                 id:baudrateLabel;
                 text:'BaudRate';
@@ -475,7 +475,7 @@ ApplicationWindow {
                         settingWindow.stateFlag = !settingWindow.stateFlag
                         if(settingWindow.height == 70)
                         {
-                            settingWindow.height = 170
+                            settingWindow.height = 160
                         }else{
                             settingWindow.height = 70
                         }
@@ -494,7 +494,7 @@ ApplicationWindow {
                 right: parent.right
                 rightMargin: 8
                 bottom: bottomlayout.top
-                bottomMargin: 5
+                bottomMargin: 2
             }
             orientation:Qt.Vertical
             handleDelegate:Rectangle{}
@@ -608,7 +608,7 @@ ApplicationWindow {
             anchors.left: parent.left
             anchors.leftMargin: 8
             anchors.bottom: footer.top
-            anchors.bottomMargin: 5
+            anchors.bottomMargin: 2
             spacing: 12
             Button{
                 id:clear
@@ -630,7 +630,7 @@ ApplicationWindow {
         Item {
             id:footer
             width: parent.width
-            height: 28
+            height: 24
             anchors.bottom: parent.bottom
             Canvas{
                 width: 20; height: 20
