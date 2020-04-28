@@ -8,7 +8,6 @@
         <file>icon/minbtn_hovered.png</file>
         <file>icon/arrow.png</file>
         <file>icon/arrow_hovered.png</file>
-        <file>icon/serialcom.png</file>
         <file>customize/CCheckBox.qml</file>
         <file>customize/CSplitView.qml</file>
         <file>customize/CTitlebar.qml</file>

@@ -19,10 +19,10 @@ ApplicationWindow {
     DropShadow {
         anchors.topMargin: 2
         anchors.fill: mainRec
-        radius: 14
+        radius: 10
         samples: 18
         fast: false
-        color: "#505050"
+        color: "#000000"
         source: mainRec
     }
 
@@ -48,11 +48,11 @@ ApplicationWindow {
             y:0
             z:1
 
-            Behavior on y{ NumberAnimation{ duration: 200}}
-            Behavior on height{ NumberAnimation{ duration: 200}}
+            Behavior on y{ NumberAnimation{ duration: 20}}
+            Behavior on height{ NumberAnimation{ duration: 20}}
 
             property bool stateFlag: false
-            property int animDuartion: 200
+            property int animDuartion: 5
             property int layoutX1: 8
             property int layoutX2: 120
             property int layoutX3: 300
@@ -433,19 +433,20 @@ ApplicationWindow {
                         SerialInterFace.setSerialFlowControl(flowcontrol.currentIndex)
                         SerialInterFace.setSerialPortParity(parity.currentIndex)
                         SerialInterFace.setSerialPortStopBits(stopbits.currentIndex)
-                        SerialInterFace.setSerialPortName(String(serialPortName.get(comboBox_comx.currentIndex).name))
+                        SerialInterFace.setSerialPortName(String(serialPortName.get(comboBoxComX.currentIndex).name))
                         SerialInterFace.openSerialPort(openmode.currentIndex)
-                        console.log(String(serialPortName.get(comboBox_comx.currentIndex).name))
+                        console.log(String(serialPortName.get(comboBoxComX.currentIndex).name))
                     }
                 }
                 Label{
+                    id:labelPort
                     text: 'Port:'
                     Layout.alignment: Qt.AlignVCenter
                     transformOrigin: Item.Center
                     font.family: 'Bookman Old Style'
                 }
                 ComboBox{
-                    id:comboBox_comx
+                    id:comboBoxComX
                     Layout.fillWidth: true
                     Layout.rightMargin: 120
                     height: 28
@@ -513,6 +514,7 @@ ApplicationWindow {
                          background: Rectangle{width: view.width;height: view.height;
                              border.color: 'Gainsboro';color: 'white';radius: 5}
                          font{ family: 'Consolas'; pointSize: 10}
+                         readOnly: true
                     }
                 }
                 Item{
@@ -527,18 +529,33 @@ ApplicationWindow {
                         font.family: 'Bookman Old Style'
                         anchors.verticalCenter: parent.verticalCenter
                     }
-                    TextArea{
-                        id:outTextArea
-                        width: 240
-                        enabled: !serialChart.checked
+                    Rectangle{
+                        id:rectTextOutput
+                        width: 240; height: 28
                         anchors.left: labelOutput.right
                         anchors.leftMargin: 10
-                        background: Rectangle{border.color: 'Gainsboro';color: 'white';radius: 5 }
+                        border.color: 'Gainsboro';color: 'white';radius: 2
+                        clip: true
+                        TextInput{
+                            id:textOutput
+                            width: 240; height: 28
+                            enabled: !serialChart.checked
+                            anchors.centerIn: parent
+                            leftPadding: 5
+                            rightPadding: 5
+                            wrapMode: TextArea.NoWrap
+                            verticalAlignment: TextEdit.AlignVCenter
+                            font{ family: 'Consolas'; pointSize: 10}
+                            onEditingFinished: {
+                                textOutput.clear()
+                                console.log('send')
+                            }
+                        }
                     }
                     ComboBox{
-                        width: 110
+                        width: 110; height: 28
                         enabled: !serialChart.checked
-                        anchors.left: outTextArea.right
+                        anchors.left: rectTextOutput.right
                         anchors.leftMargin: 10
                         background: Rectangle{color: 'white';border.color:'lightgrey';radius: 4}
                         model: ['NONE','HEX','LF',]
@@ -632,7 +649,6 @@ ApplicationWindow {
                     ctx.stroke();
                 }
                 MouseArea{
-
                     acceptedButtons:Qt.LeftButton
                     hoverEnabled: true
                     anchors.fill: parent
@@ -652,8 +668,8 @@ ApplicationWindow {
                         if(pressedButtons === Qt.LeftButton){
                             mainWindow.width += mouse.x - pressX
                             mainWindow.height += mouse.y - pressY
-                            mainWindow.width < 540 ? mainWindow.width = 540 : 0
-                            mainWindow.height < 380 ? mainWindow.height = 380 : 0
+                            mainWindow.width < 540 ? mainWindow.width = 680 : 0
+                            mainWindow.height < 380 ? mainWindow.height = 540 : 0
                         }
                     }
                 }
@@ -674,6 +690,8 @@ ApplicationWindow {
 
         onSignalIsopen:{
             if(isOpen === true){
+                labelPort.enabled = false
+                comboBoxComX.enabled = false
                 openButton.text = 'Close'
                 settingButton.icon.source = ''
                 settingButton.text = 'Setting'
@@ -682,8 +700,11 @@ ApplicationWindow {
                     settingWindow.height = 70
                     settingWindow.stateFlag = !settingWindow.stateFlag
                 }
-            }else
+            }else {
                 openButton.text = 'Open'
+                labelPort.enabled = true
+                comboBoxComX.enabled = true
+            }
         }
 
         Component.onCompleted: {
