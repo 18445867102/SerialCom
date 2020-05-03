@@ -11,6 +11,7 @@ SerialInterface::SerialInterface(QObject *parent) : QObject(parent)
     connect(serial, SIGNAL(signal_receiveData(QString)), this, SLOT(receive_data(QString)));
     connect(serial, SIGNAL(signal_serialIsOpen(bool)), this, SIGNAL(signalIsopen(bool)));
     connect(this,&SerialInterface::signalOpenSerialPort, serial, &Serial::slot_openSerialPort);
+    connect(this,&SerialInterface::signalSendData, serial, &Serial::slot_sendData);
 }
 
 void SerialInterface::openSerialPort(quint32 openmode)
@@ -53,9 +54,9 @@ void SerialInterface::setSerialFlowControl(quint32 flowControl)
     serial->slot_setSerialFlowControl(flowControl);
 }
 
-void SerialInterface::slot_sendData(const char *, qint64)
+void SerialInterface::slot_sendData(QString data, qint64 len)
 {
-
+    emit signalSendData(data, len);
 }
 void SerialInterface::upAvailablePorts()
 {

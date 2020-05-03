@@ -1,4 +1,4 @@
-import QtQuick 2.9
+import QtQuick 2.12
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5
@@ -33,6 +33,7 @@ ApplicationWindow {
         width: parent.width-40
         height: parent.height-40
         color: "#f3f8f9"
+        radius: 8
 
         CTitlebar{
             id:windowTitle
@@ -44,12 +45,9 @@ ApplicationWindow {
             id:settingWindow
             width: parent.width
             height:70
-            color: 'Gainsboro'
-            y:0
+            color: "#f3f8f9"
+            radius: 8
             z:1
-
-            Behavior on y{ NumberAnimation{ duration: 20}}
-            Behavior on height{ NumberAnimation{ duration: 20}}
 
             property bool stateFlag: false
             property int animDuartion: 5
@@ -78,16 +76,6 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]
             }
             ComboBox{
                 id:baudrate
@@ -109,16 +97,6 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]
             }
             Label{
                 id:dataBitsLabel
@@ -137,16 +115,7 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]}
+            }
             ComboBox{
                 id:databits
                 width:140;
@@ -167,16 +136,6 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]
             }
             Label{
                 id:flowControlLabel
@@ -195,16 +154,6 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]
             }
             ComboBox{
                 id:flowcontrol
@@ -225,16 +174,6 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]
             }
             Label{
                 id:parityLabel
@@ -253,16 +192,6 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]
             }
             ComboBox{
                 id:parity
@@ -283,16 +212,6 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]
             }
             Label{
                 id:openModeLabel
@@ -311,16 +230,6 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]
             }
             ComboBox{
                 id:openmode
@@ -341,16 +250,6 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]
             }
             Label{
                 id:stopBitsLabel
@@ -369,16 +268,6 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]
             }
             ComboBox{
                 id:stopbits
@@ -399,16 +288,6 @@ ApplicationWindow {
                     }
                 ]
                 state: "StateA"
-                transitions: [
-                    Transition {
-                        from: "StateA";to: "StateB"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.OutCirc}
-                    },
-                    Transition {
-                        from: "StateB";to: "StateA"
-                        NumberAnimation{ properties: "x,y,opacity"; duration:settingWindow.animDuartion;easing.type: Easing.InCirc}
-                    }
-                ]
             }
             RowLayout{
                 id: row
@@ -419,7 +298,7 @@ ApplicationWindow {
 
                 RoundButton{
                     id:openButton
-                    Layout.preferredWidth: 80
+                    Layout.preferredWidth: 90
                     Layout.preferredHeight: 28
                     Layout.leftMargin: 5
                     Layout.alignment: Qt.AlignVCenter|Qt.AlignLeft
@@ -463,11 +342,11 @@ ApplicationWindow {
                 }
                 RoundButton{
                     id:settingButton
-                    Layout.preferredWidth: 80
+                    Layout.preferredWidth: 90
                     Layout.preferredHeight: 28
                     Layout.rightMargin: 5
                     text:'Setting'
-                    background: Rectangle{color: 'WhiteSmoke'; radius: 2}
+                    background: Rectangle{color: settingButton.pressed ?'White' : "#e3e8e9"; radius: 2}
                     font.family: 'Bookman Old Style'
                     radius: 2
                     Layout.alignment: Qt.AlignVCenter|Qt.AlignRight
@@ -511,6 +390,7 @@ ApplicationWindow {
                     anchors.bottom: row1.top
                     anchors.bottomMargin: 5
                     TextArea {
+                        id:outputArea
                          background: Rectangle{width: view.width;height: view.height;
                              border.color: 'Gainsboro';color: 'white';radius: 5}
                          font{ family: 'Consolas'; pointSize: 10}
@@ -531,14 +411,14 @@ ApplicationWindow {
                     }
                     Rectangle{
                         id:rectTextOutput
-                        width: 240; height: 28
+                        width: 320; height: 28
                         anchors.left: labelOutput.right
                         anchors.leftMargin: 10
                         border.color: 'Gainsboro';color: 'white';radius: 2
                         clip: true
                         TextInput{
                             id:textOutput
-                            width: 240; height: 28
+                            width: 320; height: 28
                             enabled: !serialChart.checked
                             anchors.centerIn: parent
                             leftPadding: 5
@@ -547,8 +427,10 @@ ApplicationWindow {
                             verticalAlignment: TextEdit.AlignVCenter
                             font{ family: 'Consolas'; pointSize: 10}
                             onEditingFinished: {
+                                outputArea.append(textOutput.displayText)
+                                console.log(textOutput.displayText)
+                               SerialInterFace.slot_sendData(textOutput.displayText, textOutput.text.length)
                                 textOutput.clear()
-                                console.log('send')
                             }
                         }
                     }
@@ -612,10 +494,10 @@ ApplicationWindow {
             spacing: 12
             Button{
                 id:clear
-                width: 91; height: 28
+                width: 90; height: 28
                 text:'Clear'
                 anchors.verticalCenter: parent.verticalCenter
-                background: Rectangle{color: 'White';radius: 2 }
+                background: Rectangle{color: clear.pressed ?'White' : "#e3e8e9";radius: 2 }
                 font.family: 'Bookman Old Style'
                 Layout.alignment: Qt.AlignVCenter|Qt.AlignLeft
                 onClicked: { textRecv.clear() }
@@ -632,6 +514,7 @@ ApplicationWindow {
             width: parent.width
             height: 24
             anchors.bottom: parent.bottom
+
             Canvas{
                 width: 20; height: 20
                 anchors.right: parent.right
@@ -639,6 +522,7 @@ ApplicationWindow {
                 onPaint: {
                     var ctx = getContext("2d")
                     ctx.lineWidth = 1.0
+                    ctx.strokeStyle = "#808080"
                     ctx.beginPath()
                     ctx.moveTo(0, 15)
                     ctx.lineTo(15, 0)
@@ -646,35 +530,31 @@ ApplicationWindow {
                     ctx.lineTo(15, 5)
                     ctx.moveTo(10, 15)
                     ctx.lineTo(15, 10)
-                    ctx.stroke();
-                }
-                MouseArea{
-                    acceptedButtons:Qt.LeftButton
-                    hoverEnabled: true
-                    anchors.fill: parent
-                    property real pressX
-                    property real pressY
-                    onEntered: {
-                        cursorShape = Qt.SizeFDiagCursor
-                    }
-                    onExited: {
-                        cursorShape = Qt.ArrowCursor
-                    }
-                    onClicked: {
-                        pressX = mouse.x
-                        pressY = mouse.y
-                    }
-                    onPositionChanged:{
-                        if(pressedButtons === Qt.LeftButton){
-                            mainWindow.width += mouse.x - pressX
-                            mainWindow.height += mouse.y - pressY
-                            mainWindow.width < 540 ? mainWindow.width = 680 : 0
-                            mainWindow.height < 380 ? mainWindow.height = 540 : 0
-                        }
-                    }
+                    ctx.stroke()
                 }
             }
         }
+        MouseArea {
+             hoverEnabled: true
+             width: 20;height: 20
+             anchors.fill: parent
+             cursorShape: (mouseX>parent.width-20) && mouseY >(parent.height -20)? Qt.SizeFDiagCursor : Qt.ArrowCursor
+             property point previousPosition
+             onPressed: {
+                 previousPosition = Qt.point(mouse.x, mouse.y);
+             }
+             onPositionChanged: {
+                 if (pressedButtons == Qt.LeftButton) {
+                     var dx = mouse.x - previousPosition.x;
+                     var dy = mouse.y - previousPosition.y;
+                     var w = mainWindow.width+dx;
+                     var h = mainWindow.height+dy;
+                     if(w >= 600)  mainWindow.width = w;
+                     if(h >= 400) mainWindow.height = h;
+                     previousPosition = Qt.point(mouse.x, mouse.y)
+                 }
+             }
+         }
     }
 
     Connections{
@@ -695,7 +575,7 @@ ApplicationWindow {
                 openButton.text = 'Close'
                 settingButton.icon.source = ''
                 settingButton.text = 'Setting'
-                if(settingWindow.height == 170)
+                if(settingWindow.height > 70)
                 {
                     settingWindow.height = 70
                     settingWindow.stateFlag = !settingWindow.stateFlag
@@ -712,6 +592,8 @@ ApplicationWindow {
         }
     }
 }
+
+
 
 
 

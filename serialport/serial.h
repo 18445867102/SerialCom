@@ -31,7 +31,7 @@ public slots:
     void slot_setSerialPortDateBits(quint32);    //设置serialport端口数据位
     void slot_setSerialPortStopBits(quint32);    //设置serialport端口停止位
     void slot_setSerialFlowControl(quint32 flowControl);
-    void slot_sendData(const char *, qint64);         //发送数据
+    void slot_sendData(QString data, qint64);         //发送数据
 private:
     bool hexIn;
     bool hexOut;

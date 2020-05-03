@@ -78,11 +78,11 @@ void Serial::slot_setSerialPortName(QString name)
     serialport->setPortName(name);
 }
 
-void Serial::slot_sendData(const char* data, qint64 len)
+void Serial::slot_sendData(QString data, qint64 len)
 {
     if(serialport->isOpen() == true)
     {
-        serialport->write(data, len);
+        serialport->write(data.toLocal8Bit(), len);
     }
 }
 

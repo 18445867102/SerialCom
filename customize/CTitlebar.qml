@@ -11,6 +11,7 @@ Rectangle { // Title Rectangle
     anchors.left: parent.left;
     anchors.right: parent.right;
     height: 30;
+    radius: 5
 
     property string title: ''
     MouseArea {
@@ -36,7 +37,7 @@ Rectangle { // Title Rectangle
         anchors.horizontalCenter: parent.horizontalCenter;
         anchors.verticalCenter: parent.verticalCenter;
         color: "#fffffb";
-        font{bold: true;family:'Jokerman';pointSize: 10}
+        font{bold: true;family:'Jokerman';pointSize: 12}
         text: title
     }
     Button {   //关闭按钮
